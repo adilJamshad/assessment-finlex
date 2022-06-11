@@ -1,0 +1,21 @@
+<div class="home-main" *ngIf="employees | async as employeesData">
+  <div class="home-card">
+    <div class="home-card-element">Id</div>
+    <div class="home-card-element">Name</div>
+    <div class="home-card-element">Age</div>
+    <div class="home-card-element">Salary</div>
+  </div>
+  <div *ngIf="employeesData.length > 0">
+    <div *ngFor="let employee of employeesData">
+      <!-- <div (click)="onEmplyeeClick(employee)">{{ employee.employee_name }}</div> -->
+      <app-card
+        [employee]="employee"
+        (OnCardSelect)="onEmplyeeClick($event)"
+      ></app-card>
+    </div>
+  </div>
+  <div class="alert alert-danger" *ngIf="employeesData.length <= 0">
+    No Data available
+  </div>
+</div>
+<app-modal></app-modal>

@@ -1,0 +1,26 @@
+<div *ngIf="open">
+  <div class="modal-overlay" (click)="closeModal()"></div>
+  <div class="modal-container">
+    <div class="modal-header">Employee ID: {{ employee.id }}</div>
+    <div class="modal-content">
+      <div class="modal-content-flex">
+        <div class="modal-content-horizontal">
+          <p>Employee Name:</p>
+          <p>{{ employee.employee_name }}</p>
+        </div>
+        <div class="modal-content-horizontal">
+          <p>Employee Age:</p>
+          <p>{{ employee.employee_age }}</p>
+        </div>
+        <div class="modal-content-horizontal">
+          <p>Employee Salary:</p>
+          <p>{{ employee.employee_salary }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-button" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

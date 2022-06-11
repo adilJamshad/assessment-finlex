@@ -1,0 +1,21 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid grey;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: black;
+  color: white;
+  border-color: white;
+  transition: all 0.3s ease;
+}
+
+.card-element {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
