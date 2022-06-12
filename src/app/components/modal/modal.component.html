@@ -1,25 +1,41 @@
 <div *ngIf="open">
-  <div class="modal-overlay" (click)="closeModal()"></div>
-  <div class="modal-container">
-    <div class="modal-header">Employee ID: {{ employee.id }}</div>
+  <div
+    class="modal-overlay"
+    test-id="overlay"
+    id="overlay"
+    (click)="closeModal()"
+  ></div>
+  <div class="modal-container" test-id="modal-container" id="modal-container">
+    <div class="modal-header" test-id="modal-header" id="modal-header">
+      Employee ID: {{ employee.id }}
+    </div>
     <div class="modal-content">
       <div class="modal-content-flex">
-        <div class="modal-content-horizontal">
-          <p>Employee Name:</p>
-          <p>{{ employee.employee_name }}</p>
+        <div
+          class="modal-content-horizontal"
+          test-id="employee-employee_name"
+          id="employee-employee_name"
+        >
+          <p>Employee Name: {{ employee.employee_name }}</p>
         </div>
-        <div class="modal-content-horizontal">
-          <p>Employee Age:</p>
-          <p>{{ employee.employee_age }}</p>
+        <div
+          class="modal-content-horizontal"
+          test-id="employee-employee_age"
+          id="employee-employee_age"
+        >
+          <p>Employee Age: {{ employee.employee_age }}</p>
         </div>
-        <div class="modal-content-horizontal">
-          <p>Employee Salary:</p>
-          <p>{{ employee.employee_salary }}</p>
+        <div
+          class="modal-content-horizontal"
+          test-id="employee-employee_salary"
+          id="employee-employee_salary"
+        >
+          <p>Employee Salary: {{ employee.employee_salary }}</p>
         </div>
       </div>
     </div>
 
-    <div class="modal-actions">
+    <div class="modal-actions" id="action" test-id="action">
       <button class="modal-button" (click)="closeModal()">Close</button>
     </div>
   </div>

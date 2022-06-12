@@ -1,31 +1,65 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { TestBed, async, ComponentFixture } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
+import { provideMockStore, MockStore } from "@ngrx/store/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { AppState } from "./store/app.state";
+import { HeaderComponent } from "./components/header/header.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { LoadingSpinnerComponent } from "./components/loading-spinner/loading-spinner.component";
+import { getSharedState } from "./store/Shared/shared.selector";
+import { By } from "@angular/platform-browser";
+import { RouterTestingModule } from "@angular/router/testing";
 
-describe('AppComponent', () => {
+import { FormsModule } from "@angular/forms";
+
+describe("AppComponent", () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  let store: MockStore<AppState>;
+  let mockLoaing;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        LoadingSpinnerComponent,
       ],
+      providers: [provideMockStore()],
+      imports: [HttpClientTestingModule, FormsModule, RouterTestingModule],
     }).compileComponents();
+
+    store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+
+    mockLoaing = store.overrideSelector(getSharedState, {
+      showLoading: false,
+      errorMessage: "",
+    });
+
+    fixture.detectChanges();
+    spyOn(store, "dispatch").and.callFake(() => {});
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  afterEach(() => {
+    TestBed.inject(MockStore)?.resetSelectors();
   });
 
-  it(`should have as title 'ngrx-counter'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ngrx-counter');
+  it("should create the app", () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ngrx-counter app is running!');
+  it(`should have as title 'assessment'`, () => {
+    expect(component.title).toEqual("Assessment");
+  });
+
+  it("should not show any error", () => {
+    expect(fixture.debugElement.queryAll(By.css("#spinner")).length).toBe(0);
+  });
+
+  it("should have loading false", () => {
+    expect(fixture.debugElement.queryAll(By.css("#error")).length).toBe(0);
   });
 });

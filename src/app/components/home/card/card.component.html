@@ -1,6 +1,19 @@
-<div class="card" (click)="onCardClick(employee)">
-  <div class="card-element">{{ employee.id }}</div>
-  <div class="card-element">{{ employee.employee_name }}</div>
-  <div class="card-element">{{ employee.employee_age }}</div>
-  <div class="card-element">{{ employee.employee_salary }}</div>
+<div
+  class="card"
+  id="card-id"
+  test-id="card-id"
+  (click)="onCardClick(employee)"
+>
+  <div id="employee-id" test-id="employee-id" class="card-element">
+    {{ employee.id }}
+  </div>
+  <div id="employee-name" test-id="employee-name" class="card-element">
+    {{ employee.employee_name }}
+  </div>
+  <div id="employee-age" test-id="employee-age" class="card-element">
+    {{ employee.employee_age }}
+  </div>
+  <div id="employee-salary" test-id="employee-salary" class="card-element">
+    {{ employee.employee_salary }}
+  </div>
 </div>
