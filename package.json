@@ -26,6 +26,7 @@
     "@ngrx/effects": "^10.1.2",
     "@ngrx/store": "^10.1.0",
     "@ngrx/store-devtools": "^10.1.1",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
