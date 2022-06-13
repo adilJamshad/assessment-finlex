@@ -14,8 +14,12 @@
       ></app-card>
     </div>
   </div>
-  <div class="alert alert-danger" *ngIf="employeesData.length <= 0">
-    No Data available
+  <div
+    class="alert alert-danger"
+    test-id="no-data-available"
+    *ngIf="employeesData.length <= 0"
+  >
+    No Data Available.
   </div>
 </div>
 <app-modal></app-modal>
