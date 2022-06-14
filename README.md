@@ -22,6 +22,8 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `npm run e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io/).
 
+> **WARNING**: The end to end test might fail because of too many attempts to api endpoint as per the service provider's SLA for free service.
+
 ## Workflow
 
 When the app loads, employee data from http://dummy.restapiexample.com is fetched and it is populated on the screen,
