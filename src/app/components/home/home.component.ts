@@ -1,6 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { Employee } from "src/app/models/Employee.model";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
 import { getEmployees, getFileredEmployees } from "./state/home.actions";
@@ -14,10 +20,11 @@ import { SearchService } from "src/app/services/searchData.service";
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   employees: Observable<Employee[]>;
   @ViewChild(ModalComponent, { static: false }) modal: ModalComponent;
   search: string = "";
+  _searchObserver: Subscription;
 
   constructor(
     private store: Store<AppState>,
@@ -25,7 +32,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchData.search$.subscribe((search) => {
+    this._searchObserver = this.searchData.search$.subscribe((search) => {
       if (search !== this.search) {
         this.search = search;
         this.handleSearchChange();
@@ -41,5 +48,9 @@ export class HomeComponent implements OnInit {
 
   async handleSearchChange() {
     this.store.dispatch(getFileredEmployees({ search: this.search }));
+  }
+
+  ngOnDestroy(): void {
+    this._searchObserver.unsubscribe();
   }
 }

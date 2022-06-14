@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { Employee } from "src/app/models/Employee.model";
 
 @Component({
@@ -6,7 +13,7 @@ import { Employee } from "src/app/models/Employee.model";
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.css"],
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnDestroy {
   @Input() employee: Employee;
   @Output() OnCardSelect = new EventEmitter<Employee>();
   constructor() {}
@@ -15,5 +22,8 @@ export class CardComponent implements OnInit {
 
   onCardClick(employee: Employee): void {
     this.OnCardSelect.emit(employee);
+  }
+  ngOnDestroy(): void {
+    this.OnCardSelect.complete();
   }
 }
