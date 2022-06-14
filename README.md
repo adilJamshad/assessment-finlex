@@ -1,4 +1,4 @@
-# NgrxCounter
+# Assessment-finlex
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
 
@@ -20,8 +20,16 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm run e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io/).
 
-## Further help
+## Workflow
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+When the app loads, employee data from http://dummy.restapiexample.com is fetched and it is populated on the screen,
+
+## Stack
+
+Angular with custom components on the frontend using Ngrx/store as state management library. For unit testing and integration testing, Karma is being used. For end to end testing, cypress is being used.
+
+## Demo App
+
+I have hosted the demo app on Heroku at https://assessment-finlex.herokuapp.com/

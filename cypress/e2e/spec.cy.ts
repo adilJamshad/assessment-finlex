@@ -10,6 +10,9 @@ describe("end to end test", () => {
       .should("have.value", "Tiger");
 
     cy.get('[test-id="employee-name"]').contains("Tiger Nixon");
+    cy.get('[test-id="card-id"]').click();
+    cy.get('[test-id="employee-employee_name"]').contains("Tiger Nixon");
+    cy.get('[test-id="modal-close-button"]').click();
     cy.get('[test-id="search-field"]').clear().should("have.value", "");
     cy.get('[test-id="employee-name"]').then(
       (employees) => employees.length === 24
