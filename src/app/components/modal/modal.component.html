@@ -36,7 +36,13 @@
     </div>
 
     <div class="modal-actions" id="action" test-id="action">
-      <button class="modal-button" (click)="closeModal()">Close</button>
+      <button
+        class="modal-button"
+        test-id="modal-close-button"
+        (click)="closeModal()"
+      >
+        Close
+      </button>
     </div>
   </div>
 </div>
